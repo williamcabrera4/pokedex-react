@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Pokedex from './components/Pokedex'
+import Pokedex from './containers/Pokedex'
 import { Router, Route, browserHistory } from 'react-router'
 import { ApolloProvider } from 'react-apollo'
 import graphQlClient from './graphql/client'

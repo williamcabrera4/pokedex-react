@@ -3,7 +3,7 @@ import env from '../../../env'
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    url: env.graphQlServer,
+    uri: env.graphQlServer,
   }),
 });
 
