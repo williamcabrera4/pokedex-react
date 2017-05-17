@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import ApolloComponent from './ApolloComponent';
+import PokemonPreview from './PokemonPreview';
 
 const Title = styled.div`
   color: #7F7F7F;
@@ -7,26 +9,21 @@ const Title = styled.div`
   font-weight: 300;
 `;
 
-class Pokedex extends React.Component {
+class Pokedex extends ApolloComponent {
 
-  render() {
-    const { data } = this.props;
-    const { loading, error, Trainer } = data;
-
-    if (loading) {
-      return (<div>Loading</div>);
-    }
-
-    if (error) {
-      console.error(error);
-      return (<div>An unexpected error occurred</div>);
-    }
+  apolloRender() {
+    const { Trainer } = this.props.data;
 
     return (
       <div className='w-100 bg-light-gray min-vh-100'>
         <Title className='tc pa5'>
-          Hey {Trainer.name}, there are 0 Pokemons in your pokedex
+          Hey {Trainer.name}, there are {Trainer.ownedPokemons.length} Pokemons in your pokedex
         </Title>
+        <div className='flex flex-wrap justify-center center w-75'>
+          {Trainer.ownedPokemons.map((pokemon) =>
+            <PokemonPreview key={pokemon.id} pokemon={pokemon} />
+          )}
+        </div>
       </div>
     );
   }
